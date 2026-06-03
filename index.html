@@ -3,14 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Build of Doctor Website</title>
-    <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; background-color: #f4f4f9; }
-        h1 { color: #333; }
-    </style>
+    <title>Iranian Doctor Directory US</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>Welcome to my brand new website hosted on GitHub Pages.</p>
+
+    <header class="app-header">
+        <div class="container">
+            <h1>Iranian Doctor Directory</h1>
+            <p>Find and filter Iranian medical professionals across the United States.</p>
+        </div>
+    </header>
+
+    <section class="filter-section">
+        <div class="container filter-grid">
+            <div class="filter-group">
+                <label for="stateFilter">State</label>
+                <select id="stateFilter">
+                    <option value="all">All States</option>
+                    </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="specialtyFilter">Specialty</label>
+                <select id="specialtyFilter">
+                    <option value="all">All Specialties</option>
+                    </select>
+            </div>
+        </div>
+    </section>
+
+    <main class="results-section">
+        <div class="container">
+            <div class="results-counter" id="resultsCounter">Loading directory...</div>
+            
+            <div class="table-wrapper">
+                <table id="doctorTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Specialty</th>
+                            <th>State</th>
+                            <th>Address</th>
+                            <th>Phone Number</th>
+                            <th>Affiliation</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
 </body>
 </html>

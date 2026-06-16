@@ -12,17 +12,36 @@ const resultsCounter = document.getElementById('resultsCounter');
 // 1. A Simple Vanilla CSV Parser Helper Function
 function parseCSV(text) {
     const lines = text.split('\n').map(line => line.trim()).filter(line => line.length > 0);
-    const headers = lines[0].split(',');
-    
+    const headers = parseCSVLine(lines[0]);
+
     return lines.slice(1).map(line => {
-        // Simple comma split (assumes no commas inside column strings)
-        const values = line.split(','); 
+        const values = parseCSVLine(line);
         const obj = {};
         headers.forEach((header, index) => {
             obj[header.trim()] = values[index] ? values[index].trim() : '';
         });
         return obj;
     });
+}
+
+// Parses a single CSV line respecting quoted fields with commas inside
+function parseCSVLine(line) {
+    const fields = [];
+    let current = '';
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') {
+            inQuotes = !inQuotes;
+        } else if (ch === ',' && !inQuotes) {
+            fields.push(current);
+            current = '';
+        } else {
+            current += ch;
+        }
+    }
+    fields.push(current);
+    return fields;
 }
 
 // 2. Main Initialization Function (Runs automatically when the page loads)
